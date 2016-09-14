@@ -1,0 +1,21 @@
+package threads;
+
+public class StopThread {
+
+	private static boolean stopRequested = false;
+	public static void main(String[] args) {
+		Thread newThread = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				while (!stopRequested) {
+					System.out.println("new line +");
+				}
+			}
+		});
+		
+		newThread.start();
+		stopRequested = true;
+	}
+
+}

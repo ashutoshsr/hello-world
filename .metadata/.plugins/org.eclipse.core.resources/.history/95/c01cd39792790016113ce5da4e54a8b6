@@ -1,0 +1,5 @@
+package com.ashu.core.observer;
+
+public class SetObserverImpl implements SetObserver<E> {
+
+}

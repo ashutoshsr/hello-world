@@ -1,0 +1,18 @@
+package com.ashu.core;
+
+public class PostFix {
+
+	public static void main(String[] args) {
+		char[] expression = "a+b*(c^d-e)^(f+g*h)-i".toCharArray();
+		StackImpl<Integer> stack = new StackImpl<Integer>(expression.length, Integer.class);
+		final char[] precedenceArray = new char[]{'-','+','*','^'};
+		for (char c : precedenceArray) {
+			// if char is not operator, output
+			if (precedenceArray.toString().indexOf(c) < 0) {
+				System.out.println(c);
+			}
+		}
+
+	}
+
+}

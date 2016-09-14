@@ -1,0 +1,27 @@
+package com.ashu.core;
+
+public class StringReverseNoPrimitiveUse {
+
+	public static void main(String[] args) {
+		char[] expression = "GeeksQuiz".toCharArray();
+		StackImpl<Character> stack = new StackImpl<Character>(expression.length, Character.class);
+		for (char c : expression) {
+			stack.push(c);
+		}
+		pushBelowTop(stack);
+		while (!stack.isEmpty()) {
+			System.out.print(stack.top());
+			stack.pop();
+		}
+	}
+
+	private static Stack<Character> pushBelowTop(Stack<Character> stack) {
+		while (!stack.isEmpty()) {
+			char temp = stack.top();
+			stack.pop();
+			pushBelowTop(stack);
+			stack.push(temp);
+		}
+		return stack;
+	}
+}

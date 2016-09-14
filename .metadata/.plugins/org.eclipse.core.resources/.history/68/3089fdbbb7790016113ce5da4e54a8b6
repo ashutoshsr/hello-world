@@ -1,0 +1,17 @@
+package threads.demo;
+
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
+
+public class DemoExecutor {
+	
+	public static void main(String args[]) {
+		int ThreadCounter = 0;
+		BlockingQueue<Runnable> blocker = new ArrayBlockingQueue<>(50);
+		
+		CustomThreadPoolExecutor executor = new CustomThreadPoolExecutor(10, 20, 5000, TimeUnit.MILLISECONDS, blocker);
+		
+	}
+
+}

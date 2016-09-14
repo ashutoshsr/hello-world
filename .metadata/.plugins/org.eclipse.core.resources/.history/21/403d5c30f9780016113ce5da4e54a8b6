@@ -1,0 +1,27 @@
+package threads;
+
+import java.util.concurrent.TimeUnit;
+
+public class StopThread {
+
+	private static boolean stopRequested = true;
+
+	public static void main(String[] args) {
+		Thread newThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while (stopRequested) {
+					System.out.println("new line +");
+				}
+			}
+		});
+		try {
+			TimeUnit.SECONDS.sleep(300);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		newThread.start();
+		stopRequested = false;
+	}
+
+}

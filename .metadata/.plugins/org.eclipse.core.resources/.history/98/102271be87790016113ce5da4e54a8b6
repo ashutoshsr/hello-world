@@ -1,0 +1,7 @@
+package com.ashu.core.observer;
+
+import Set;
+
+public class ForwardingSet extends Set {
+
+}

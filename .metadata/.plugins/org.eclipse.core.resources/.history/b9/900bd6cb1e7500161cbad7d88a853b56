@@ -1,0 +1,17 @@
+package com.ashu.core.observer;
+
+public class StockGrabber implements Subject {
+
+	@Override
+	public void register(Observer o) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void unreg(Observer o) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

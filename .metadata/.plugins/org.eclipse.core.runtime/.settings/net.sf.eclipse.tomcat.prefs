@@ -1,0 +1,12 @@
+computeSourcePath=true
+contextsDir=/Users/ashsrivast/Downloads/apache-tomcat-7/conf/Catalina/localhost
+eclipse.preferences.version=1
+enabledSecurityManager=true
+managerUrl=http\://localhost\:8080/manager
+projectsInCp=WebTest;
+projectsInSourcePath=DesignPatterns;MyServlets;TestProject;WebTest;
+tomcatBase=/Users/ashsrivast/Downloads/apache-tomcat-7
+tomcatConfigFile=/Users/ashsrivast/Downloads/apache-tomcat-7/conf/server.xml
+tomcatDir=/Users/ashsrivast/Downloads/apache-tomcat-7
+tomcatJRE=com.oracle.java.8u72.jdk
+tomcatVersion=tomcatV9

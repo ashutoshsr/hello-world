@@ -1,0 +1,5 @@
+package com.ashu.core;
+
+public interface Stack {
+
+}

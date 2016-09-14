@@ -1,0 +1,10 @@
+package com.ashu.core;
+
+/**
+ * A Stack implementation using Arrays.. 
+ * @author ashsrivast
+ *
+ */
+public class StackImpl {
+  
+}

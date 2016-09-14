@@ -1,0 +1,6 @@
+1473687953304	Encapsulate field 'areaCode'
+1473687974147	Encapsulate field 'prefix'
+1473783481183	Extract local variable 'canonicalization'
+1473790576357	Copy compilation unit
+1473790634843	Rename local variable 'ready'
+1473790645963	Rename local variable 'start'

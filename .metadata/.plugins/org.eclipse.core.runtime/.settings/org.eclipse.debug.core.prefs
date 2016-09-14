@@ -1,0 +1,2 @@
+eclipse.preferences.version=1
+prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<watchExpressions>\n<expression enabled\="true" text\="numbers[i]"/>\n<expression enabled\="true" text\="max"/>\n<expression enabled\="true" text\="stockPrice[j]"/>\n<expression enabled\="true" text\="stockPrice[i]"/>\n</watchExpressions>\n

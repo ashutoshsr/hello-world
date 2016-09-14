@@ -1,0 +1,80 @@
+package threads;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorCompletionService;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.RejectedExecutionHandler;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+public class ExecutorCompServ {
+	public static void main(String args[]) {
+
+		List<Callable> callsList = new ArrayList<>();
+		Callable<Integer> calls = new Callable<Integer>() {
+			@Override
+			public Integer call() throws Exception {
+				System.out.println("execting " + this);
+				return (int) Math.random();
+			}
+		};
+		ExecutorService executor = new ThreadPoolExecutor(1, 2, 1000, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(10), new RejectedExecutionHandler() {
+			
+			@Override
+			public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
+				System.out.println("Thread name");
+			}
+		});
+		for (int i=0; i < 10; i++) {
+			final int threadNum = i;
+		try {
+			callsList.add(calls);
+			executor.submit(new Callable<Integer>() {
+				@Override
+				public Integer call() throws Exception {
+					System.out.println("execting " + this);
+					return (int) Math.random();
+				}
+			}).get();
+		} catch (InterruptedException e) {
+			throw new AssertionError(e.getCause());
+		} catch (ExecutionException e) {
+			throw new AssertionError(e.getCause());
+		} finally {
+			executor.shutdown();
+		}
+		}
+		
+
+	
+		ExecutorCompletionService<Integer> completionService = new ExecutorCompletionService<>(executor);
+		String values = null;
+		for (int i=0 ; i < 10 ;i++) {
+			try {
+				Future<Integer> result = completionService.take();
+				if (result.get() % 3 == 1) {
+					values = "Done";
+					break;
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		if (values !=null) {
+			System.out.println(values);
+		}
+	}
+	
+
+}

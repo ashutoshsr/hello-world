@@ -1,0 +1,197 @@
+package datastructs.linkedList;
+
+/**
+ * Created by ashsrivast on 30/07/16.
+ */
+public class LinkedList {
+
+	ListNode head;
+	int length;
+
+	public LinkedList() {
+		length = 0;
+	}
+
+	public ListNode getHead() {
+		return head;
+	}
+
+	public void insertAtBegin(ListNode node) {
+		node.setNext(head);
+		head = node;
+		length++;
+	}
+
+	public void insertAtEnd(ListNode node) {
+		if (head == null) {
+			head = node;
+		} else {
+			ListNode lastOne = head;
+			while (lastOne.getNext() != null) {
+				lastOne = lastOne.getNext();
+			}
+			lastOne.setNext(node);
+		}
+		length++;
+	}
+
+	public void insert(int data, int position) {
+		position = Math.max(position, 0);
+		position = Math.min(position, length);
+		ListNode node = new ListNode(data);
+		if (head == null) {
+			head = node;
+			length++;
+		} else if (position == 0) {
+			insertAtBegin(node);
+		} else if (position == length) {
+			insertAtEnd(node);
+		} else {
+			ListNode positionNode = head;
+			for (int i = 1; i < position && positionNode != null; i++) {
+				positionNode = positionNode.getNext();
+			}
+			node.setNext(positionNode.getNext());
+			positionNode.setNext(node);
+			length++;
+		}
+	}
+
+	public ListNode removeFromEnd() {
+		ListNode removedElement = null;
+		if (head == null) {
+			head = null;
+			return head;
+		} else {
+			ListNode lastOne = head;
+			while (lastOne.getNext() != null) {
+				lastOne = lastOne.getNext();
+			}
+			removedElement = lastOne;
+			removedElement.setNext(null);
+			length--;
+			return removedElement;
+		}
+	}
+
+	public ListNode removeMatchedNode(ListNode node) {
+		if (head == null) {
+			head = null;
+			return head;
+		} else {
+			ListNode lastOne = head;
+			while (lastOne.getNext() != null) {
+				lastOne = lastOne.getNext();
+				if (node.equals(lastOne)) {
+					lastOne.setNext(null);
+					length--;
+					return lastOne;
+				}
+			}
+		}
+		return null;
+	}
+
+	public void remove(int key) {
+		ListNode temp = head;
+		ListNode prev = null;
+		if (temp != null && temp.getData() == key) {
+			head = temp.getNext();
+			return;
+		}
+
+		prev = head;
+		temp = prev.getNext();
+		while (temp != null) {
+			if (temp.getData() == key) {
+				prev.setNext(temp.getNext());
+				temp = null;
+				break;
+			} else {
+				prev = temp;
+				temp = prev.getNext();
+			}
+		}
+	}
+
+	public void removeByPosition(int position) {
+		ListNode temp = head;
+		ListNode prev = null;
+		if (head == null) {
+			return;
+		} else if (position == 0) {
+			head = temp.getNext();
+			return;
+		}
+
+		int i = 0;
+		prev = head;
+		while (prev != null && i < position - 1) {
+			prev = prev.getNext();
+			i++;
+		}
+		if (prev == null || prev.getNext() == null) {
+			return;
+		}
+		temp = prev.getNext();
+		if (temp != null) {
+			prev.setNext(temp.getNext());
+		}
+	}
+
+	/*
+	 * public ListNode remove(int position) { ListNode removedElement = null; if
+	 * (position > length || position < 0) { return null; } else if (position ==
+	 * length) { removeFromEnd(); return null; } else if (position == 0) {
+	 * ListNode newHead = head.getNext(); head = null; head = newHead; length--;
+	 * return head; } else { ListNode lastOne = head; ListNode previousOne =
+	 * head; for (int i = 0; i < position; i++) { previousOne = lastOne; lastOne
+	 * = lastOne.getNext(); } previousOne.setNext(lastOne.getNext());
+	 * lastOne.setNext(null); length--; return lastOne; } }
+	 */
+
+	public int getPosition(int data) {
+		if (head == null) {
+			return -1;
+		} else {
+			ListNode lastOne = head;
+			int position = 0;
+			while (lastOne.getNext() != null) {
+				position++;
+				if (lastOne.getData() == data) {
+					return position;
+				}
+				lastOne = lastOne.getNext();
+			}
+		}
+		return -1;
+	}
+	
+	public int sizeOfLinkedList() {
+		return getCount(head);
+	}
+	
+	private int getCount(ListNode node) {
+		if (node == null) {
+			return 0;
+		} 
+		return 1 + getCount(node.getNext());
+	}
+	
+	
+
+	@Override
+	public String toString() {
+		ListNode node = head;
+		StringBuffer buffer = new StringBuffer();
+		while (node != null) {
+			buffer.append(node.getData() + " ");
+			node = node.getNext();
+		}
+		return "DLLinkedList{ " + buffer.toString() + " and length=" + length + '}';
+	}
+
+	public static void main(String args[]) {
+		System.out.println("Hello World");
+	}
+}

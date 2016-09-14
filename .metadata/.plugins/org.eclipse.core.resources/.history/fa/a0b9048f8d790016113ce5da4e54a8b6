@@ -1,0 +1,5 @@
+package com.ashu.core.observer;
+
+public class ObservableSet<E> extends ForwardingSet {
+
+}

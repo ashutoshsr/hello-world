@@ -1,0 +1,28 @@
+package threads;
+
+import java.util.concurrent.ConcurrentHashMap;
+
+public class Canonicalization {
+	
+	private static final ConcurrentHashMap<String, String> map = new ConcurrentHashMap<>();
+	public static void main(String args[]) {
+		Canonicalization canonicalization = new Canonicalization();
+		System.out.println(canonicalization.intern("Anjali"));
+		canonicalization.intern("Anjali");
+		canonicalization.intern("Anjali");
+		canonicalization.intern("Anjali");
+		canonicalization.intern("Ashutosh");
+		canonicalization.intern("Anjali");
+		canonicalization.intern("Ashutosh");
+		canonicalization.intern("Anjali");
+		for (String string : map.values()) {
+			System.out.println(string);
+		}
+	}
+	
+	public String intern(String s) {
+		String previousValue = map.putIfAbsent(s, s);
+		return previousValue == null ? s : previousValue;
+	}
+
+}

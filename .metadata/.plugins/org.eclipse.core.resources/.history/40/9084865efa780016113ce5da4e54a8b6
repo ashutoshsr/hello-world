@@ -1,0 +1,23 @@
+package threads;
+
+import java.util.concurrent.TimeUnit;
+
+public class StopThread {
+
+	private static boolean stopRequested = false;
+
+	public static void main(String[] args) throws InterruptedException {
+		Thread newThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while (!stopRequested) {
+					System.out.println("new line +" + stopRequested);
+				}
+			}
+		});
+		newThread.start();
+		TimeUnit.NANOSECONDS.sleep(1);
+		stopRequested = true;
+	}
+
+}

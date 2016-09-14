@@ -1,0 +1,47 @@
+package com.ashu.core;
+
+public class StockPrice {
+
+	/**
+	 * A Stack implementation using Arrays..
+	 * 
+	 * @author ashsrivast
+	 *
+	 */
+
+		public static void main(String args[]) {
+			Integer[] stockPrice = new Integer[]{12, 2, 4, 6, 10, 1, 3, 5, 24, 3, 2, 1};
+			Integer[] arraySpan = new Integer[stockPrice.length];
+			
+			for (int i = 0; i < stockPrice.length; i++) {
+				int j = 0; 
+				int span = 0;
+				while (stockPrice[j] <= stockPrice[i] && j <= i) {
+					span++;
+					j++;
+				}
+				arraySpan[i] = span;
+			}
+			for (int i = 0; i < arraySpan.length; i++) {
+				System.out.println(arraySpan[i]);
+			}
+//			StackImpl<Integer> stack = new StackImpl<Integer>(10, Integer.class);
+//			for (int i = 0; i < 5; i++) {
+//				stack.push(i);
+//			}
+//			System.out.println("Stack length is " + stack.size());
+//			for (int i = 0; i < 5; i++) {
+//				stack.pop();
+//			}
+//			System.out.println("Stack length after pop is " + stack.size());
+//			for (int i = 0; i < 5; i++) {
+//				stack.push(i);
+//			}
+//			System.out.println("Stack length after second push is " + stack.size());
+//			for (int i = 0; i < 5; i++) {
+//				System.out.println(stack.top());
+//			}
+			
+		}
+
+}

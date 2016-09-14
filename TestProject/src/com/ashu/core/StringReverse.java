@@ -1,0 +1,18 @@
+package com.ashu.core;
+
+public class StringReverse {
+
+	public static void main(String[] args) {
+		char[] expression = "GeeksQuiz".toCharArray();
+		StackImpl<Character> stack = new StackImpl<Character>(expression.length, Character.class);
+		for (char c : expression) {
+			// if char is not operator, output
+			stack.push(c);
+		}
+		while (!stack.isEmpty()) {
+			System.out.print(stack.top());
+			stack.pop();
+		}
+
+	}
+}
